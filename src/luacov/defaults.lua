@@ -17,8 +17,12 @@ return {
   -- using `luacov.tick` module. Default: false.
   tick = false,
 
-  --- Include all files including untested ones in the report
+  --- Include all files including untested ones in the report.
   includeuntested = false,
+
+  --- Minimum coverage requirement required to pass the coverage.
+  --- Default is 0
+  minimumcoverage = 0,
 
   --- Stats file updating frequency for `luacov.tick`.
   -- The lower this value - the more frequently results will be written out to the stats file.
