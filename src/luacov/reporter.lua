@@ -35,7 +35,6 @@ function ReporterBase:new(conf)
    local filtered_data = {}
    local max_hits = 0
 
-   
    -- Several original paths can map to one real path,
    -- their stats should be merged in this case.
    for filename, file_stats in pairs(data) do
@@ -55,24 +54,20 @@ function ReporterBase:new(conf)
       end
    end
 
-   
-   -- Add untested files to the files table 
+   -- Add untested files to the files table
    if conf.includeuntested then
-      
       for entry in lfs.dir(lfs.currentdir()) do
-         
          if string.find(entry,"%.lua$") then
-            if luacov.file_included(entry) then 
-               realname = luacov.real_name(entry)
-            
+            if luacov.file_included(entry) then
+               local realname = luacov.real_name(entry)
 
-               if not filtered_data[realname] then 
+               if not filtered_data[realname] then
                   table.insert(files,realname)
                   filtered_data[realname] = {0}
-               end      
+               end
             end
          end
-      end         
+      end
    end
 
    table.sort(files)
